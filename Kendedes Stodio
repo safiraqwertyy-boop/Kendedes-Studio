@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Persewaan Baju Adat Nusantara</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f1ec;
+  color: #3b2a1a;
+}
+
+header {
+  background: #6f4e37;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+section {
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #6f4e37;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #5a3e2a;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #6f4e37;
+  color: white;
+}
+
+img {
+  width: 80px;
+  border-radius: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Persewaan Baju Adat Nusantara</h1>
+  <p>Website Pendataan Keluar Masuk Persewaan</p>
+</header>
+
+<section>
+
+<div class="card">
+  <h3>Form Penyewaan</h3>
+  <input id="nama" placeholder="Nama Penyewa">
+
+  <select id="baju">
+    <option value="">-- Pilih Baju Adat --</option>
+    <option value="Jawa Timur">Jawa Timur</option>
+    <option value="Jawa Tengah">Jawa Tengah</option>
+    <option value="Jawa Barat">Jawa Barat</option>
+    <option value="Kalimantan Timur">Kalimantan Timur</option>
+    <option value="Kalimantan Barat">Kalimantan Barat</option>
+    <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+    <option value="Kalimantan Utara">Kalimantan Utara</option>
+    <option value="Sumatera Barat">Sumatera Barat</option>
+    <option value="Sumatera Selatan">Sumatera Selatan</option>
+  </select>
+
+  <button onclick="sewa()">Sewa Baju</button>
+</div>
+
+<div class="card">
+  <h3>Data Persewaan</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>Daerah</th>
+        <th>Gambar</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="tabel"></tbody>
+  </table>
+</div>
+
+</section>
+
+<script>
+const gambar = {
+  "Jawa Timur": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Baju_Adat_Jawa_Timur.jpg",
+  "Jawa Tengah": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Pakaian_Adat_Jawa_Tengah.jpg",
+  "Jawa Barat": "https://upload.wikimedia.org/wikipedia/commons/3/35/Pakaian_Adat_Jawa_Barat.jpg",
+  "Kalimantan Timur": "https://upload.wikimedia.org/wikipedia/commons/9/90/Pakaian_Adat_Kalimantan_Timur.jpg",
+  "Kalimantan Barat": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Pakaian_Adat_Kalimantan_Barat.jpg",
+  "Kalimantan Selatan": "https://upload.wikimedia.org/wikipedia/commons/5/55/Pakaian_Adat_Kalimantan_Selatan.jpg",
+  "Kalimantan Utara": "https://upload.wikimedia.org/wikipedia/commons/1/15/Pakaian_Adat_Kalimantan_Utara.jpg",
+  "Sumatera Barat": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Pakaian_Adat_Sumatera_Barat.jpg",
+  "Sumatera Selatan": "https://upload.wikimedia.org/wikipedia/commons/3/32/Pakaian_Adat_Sumatera_Selatan.jpg"
+};
+
+function sewa() {
+  let nama = document.getElementById("nama").value;
+  let baju = document.getElementById("baju").value;
+
+  if (nama === "" || baju === "") {
+    alert("Lengkapi data!");
+    return;
+  }
+
+  let row = `
+    <tr>
+      <td>${nama}</td>
+      <td>${baju}</td>
+      <td><img src="${gambar[baju]}"></td>
+      <td>Disewa</td>
+    </tr>
+  `;
+
+  document.getElementById("tabel").innerHTML += row;
+
+  document.getElementById("nama").value = "";
+  document.getElementById("baju").value = "";
+}
+</script>
+
+</body>
+</html>
